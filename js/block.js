@@ -98,8 +98,8 @@ function getHashtagRanges(blockText: string, hashtagConfig: Object): Array<Objec
       if (startIndex >= 0) {
         const endIndex =
           text.indexOf(separator) >= 0
-          ? text.indexOf(separator)
-          : text.length;
+            ? text.indexOf(separator)
+            : text.length;
         const hashtag = text.substr(0, endIndex);
         if (hashtag && hashtag.length > 0) {
           sections.push({
@@ -562,6 +562,10 @@ export function getBlockMarkup(
         blockHtml.push(`<${blockTag}`);
         if (blockStyle || defaultStyle) {
           blockHtml.push(` style="${defaultStyle}${blockStyle}"`);
+          blockHtml.push(`class="asd${blockStyle}" `);
+        }
+        if (block.type === 'ordered-list-item' || block.type === 'unordered-list-item') {
+          blockHtml.push(`class="${blockStyle}" `);
         }
         if (directional) {
           blockHtml.push(' dir = "auto"');
