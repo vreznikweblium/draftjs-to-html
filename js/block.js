@@ -41,6 +41,18 @@ const listSpecificStylesMap: Object = {
 
 const getAlignment = (key, value) => listSpecificStylesMap[`${key}-${value}`] || '';
 
+const getClass = (value) => listSpecificStylesMap[`wdraft--align-${value}`] || '';
+
+export function getListBlockClass(data: Object): string {
+  let className = '';
+  forEach(data, (value) => {
+    if (value) {
+     className += `${getClass(value)}`;
+    }
+  });
+  return className;
+}
+
 export function getListBlockStyle(data: Object): string {
   let styles = '';
   forEach(data, (key, value) => {
@@ -562,10 +574,8 @@ export function getBlockMarkup(
         blockHtml.push(`<${blockTag}`);
         if (blockStyle || defaultStyle) {
           blockHtml.push(` style="${defaultStyle}${blockStyle}"`);
-          blockHtml.push(`class="asd${blockStyle}" `);
         }
         if (block.type === 'ordered-list-item' || block.type === 'unordered-list-item') {
-          blockHtml.push(`class="${blockStyle}" `);
         }
         if (directional) {
           blockHtml.push(' dir = "auto"');
