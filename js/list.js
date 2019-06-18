@@ -51,16 +51,19 @@ export function getListMarkup(
       nestedListBlock.push(block);
     }
     if (!nestedBlock) {
-      listHtml.push('<li');
       const blockStyle = getListBlockStyle(block.data);
       const blockClass = getListBlockClass(block.data);
+
+      listHtml.push('<li');
+      if (blockClass) {
+        listHtml.push(` class="${blockClass}" `);
+      }
       if (blockStyle) {
         listHtml.push(` style="${blockStyle}"`);
       }
       if (directional) {
         listHtml.push(' dir = "auto"');
       }
-      listHtml.push(`class="${blockClass}"`);
       listHtml.push('>');
       listHtml.push(getBlockInnerMarkup(
         block,
