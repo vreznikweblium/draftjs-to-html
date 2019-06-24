@@ -53,11 +53,9 @@ export function getListMarkup(
     if (!nestedBlock) {
       const blockStyle = getListBlockStyle(block.data);
       const blockClass = getListBlockClass(block.data);
-
+      console.log('blockClass', blockClass)
       listHtml.push('<li');
-      if (blockClass) {
         listHtml.push(` class="${blockClass}" `);
-      }
       if (blockStyle) {
         listHtml.push(` style="${blockStyle}"`);
       }

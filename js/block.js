@@ -33,21 +33,19 @@ const defaultStylesMap: Object = {
   unstyled: 'display: block;',
 };
 
-const listSpecificStylesMap: Object = {
-  'text-align-center': 'margin-left: auto; margin-right: auto;',
-  'text-align-left': 'margin-right: auto; margin-left: 0;',
-  'text-align-right': 'margin-right: 0; margin-left: auto;',
+const listSpecificClassesMap: Object = {
+  'text-align-center': 'center',
+  'text-align-left': 'left',
+  'text-align-right': 'right',
 };
 
-const getAlignment = (key, value) => listSpecificStylesMap[`${key}-${value}`] || '';
-
-const getClass = (key, value) => listSpecificStylesMap[`wdraft--align-${value}`] || '';
+const getClass = (key, value) => listSpecificClassesMap[`${key}-${value}`] || '';
 
 export function getListBlockClass(data: Object): string {
   let className = '';
   forEach(data, (key, value) => {
     if (value) {
-      className += `${getClass(key, value)}`;
+      className += `wdraft__text wdraft__text--${getClass(key, value)}`;
     }
   });
   return className;
@@ -57,7 +55,7 @@ export function getListBlockStyle(data: Object): string {
   let styles = '';
   forEach(data, (key, value) => {
     if (value) {
-      styles += `${key}:${value};${getAlignment(key, value)}`;
+      styles += `${key}:${value}; display:block;`;
     }
   });
   return styles;
